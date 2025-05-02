@@ -14,7 +14,6 @@ export class AuthController {
     ){}
 
      registerUser  = async (req:Request, res: Response)  => {
-        console.log(req.body)
        const { name, email, password } = req.body;
        const registerUserDto = new RegisterUserDto(name, email, password);
 
@@ -25,8 +24,7 @@ export class AuthController {
         this.authService.registerUser(registerUserDto!)
         .then((user) => res.json(user))
         .catch((error) => {
-            console.log(error)
-            handlerError(error,res)
+            handlerError(error, res, req);
         })
        
     }
@@ -41,7 +39,7 @@ export class AuthController {
         this.authService.loginUser(loginUserDto!)
         .then((user)=> res.json(user))
         .catch((error)=>{
-            handlerError(error,res)
+            handlerError(error, res, req);
         })
     }
     

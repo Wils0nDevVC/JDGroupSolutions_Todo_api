@@ -17,7 +17,6 @@ export class AuthService {
     const existUser = await this.userRepository.findByEmail(
       registerUserDto.email
     );
-
     if (existUser) throw CustomError.badRequest("Usuario ya existe");
 
     try {
@@ -34,7 +33,6 @@ export class AuthService {
       );
 
       const savedUser = await this.userRepository.save(newUser);
-
       const { password, ...userEntity } = savedUser;
 
       const token = await this.generateToken({ ...userEntity });
@@ -61,7 +59,6 @@ export class AuthService {
       if (!isPassword) throw CustomError.badRequest("Password is no valid");
       if (isPassword) {
         const { password, ...uerEntity } = UserEntity.fromObject(existUser);
-
         const token = await this.generateToken({ ...uerEntity });
         if (!token)
           throw CustomError.internalServer("Error while creating JWT");

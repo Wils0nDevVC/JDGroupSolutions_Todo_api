@@ -1,5 +1,5 @@
+import { MongoDatabase } from './data/mongo/mongo-database';
 import { envs } from './config/envs';
-import { MysqlDatabase } from './data/mysql/mysql-database';
 import { AppRoutes } from './presentation/routes';
 import { Server } from './presentation/server';
 
@@ -11,13 +11,13 @@ import { Server } from './presentation/server';
 
 async function  main() {
   //Inicializo la conexion a BD
-  await MysqlDatabase.connect({
-    host: envs.DB_HOST,
-    user: envs.DB_USER,
-    password: envs.DB_PASSWORD,
-    database: envs.DB_NAME,
-    port: envs.DB_PORT 
+
+  await MongoDatabase.connect({
+    dbName : envs.MONGO_DB_NAME,
+    mongoUrl: envs.MONGO_URL 
   });
+
+ 
   
   //Server es el que orquesta toda mi aplicacion
   //recibe un puerto y las rutas

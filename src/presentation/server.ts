@@ -1,3 +1,5 @@
+import { limiter } from './middlewares/express-rate-limit.middleware';
+
 import path from 'path';
 import express, { Router } from 'express';
 import fileUpload from 'express-fileupload';
@@ -37,6 +39,8 @@ export class Server {
     this.app.use(fileUpload({
       limits: { fileSize: 50 * 1024 * 1024 },
     }));
+    this.app.use(limiter); 
+
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );

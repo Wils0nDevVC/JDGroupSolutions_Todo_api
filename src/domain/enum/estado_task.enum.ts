@@ -1,0 +1,5 @@
+export enum EstadoTask {
+  POR_HACER = 'POR_HACER',
+  EN_PROGRESO = 'EN_PROGRESO',
+  COMPLETADA = 'COMPLETADA',
+}

@@ -3,7 +3,7 @@ export class CustomError extends Error {
 
     //hacemos el metodo privado, para que las instancias se creen mediante sus
     //metodos estaticos
-    private constructor(
+    constructor(
         public readonly statusCode : number,
         public readonly message : string
     ) {
